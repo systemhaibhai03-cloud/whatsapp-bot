@@ -11,7 +11,7 @@ app.post('/webhook', async (req, res) => {
   try {
     const { event, data } = req.body;
     
-    if (event === 'onmessage' && !data.fromMe) {
+    if (event === 'onmessage') {
       const from = data.from;
       const message = data.body?.toLowerCase();
       
@@ -29,7 +29,6 @@ app.post('/webhook', async (req, res) => {
         reply = '🤖 Samajh nahi aaya!\n\nHi bhejo shuru karne ke liye!';
       }
       
-      // Send reply
       await fetch(`${WPPCONNECT_URL}/api/${SESSION}/send-message`, {
         method: 'POST',
         headers: {
